@@ -1,0 +1,2 @@
+Banana,250.0,12/07/2022,FRU-01,10,Verano
+Fresa,800.0,12/07/2022,FRU-02,25,Invierno
