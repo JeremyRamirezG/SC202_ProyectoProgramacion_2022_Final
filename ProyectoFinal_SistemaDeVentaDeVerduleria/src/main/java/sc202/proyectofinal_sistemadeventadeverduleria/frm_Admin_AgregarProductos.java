@@ -19,6 +19,7 @@ public class frm_Admin_AgregarProductos extends javax.swing.JFrame {
      */
     public frm_Admin_AgregarProductos() {
         initComponents();
+        this.getRootPane().setDefaultButton(btnAgregar);
     }
 
     /**

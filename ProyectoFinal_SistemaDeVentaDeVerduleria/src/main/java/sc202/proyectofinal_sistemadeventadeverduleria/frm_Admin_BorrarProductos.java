@@ -4,6 +4,9 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import CRUD.ManejoProductos;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jrg71
@@ -15,6 +18,7 @@ public class frm_Admin_BorrarProductos extends javax.swing.JFrame {
      */
     public frm_Admin_BorrarProductos() {
         initComponents();
+        this.getRootPane().setDefaultButton(btnEliminar);
     }
 
     /**
@@ -51,6 +55,11 @@ public class frm_Admin_BorrarProductos extends javax.swing.JFrame {
         btnEliminar.setBackground(new java.awt.Color(57, 62, 70));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,6 +127,56 @@ public class frm_Admin_BorrarProductos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        String idBuscar = txtIDBorrar.getText();
+        ManejoProductos objManejoProductos = new ManejoProductos();
+        
+        if (idBuscar.contains("FRU-")){
+            objManejoProductos.setTipoProducto("Frutas");
+            objManejoProductos.setIdProductoManejoArchivos(idBuscar);
+            int encontroRegistro = objManejoProductos.borrarPorID();
+            
+            if (encontroRegistro==1){
+                JOptionPane.showMessageDialog(null,"El registro fue eliminado correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID en el sistema, vuelva a intentarlo");
+            }
+            
+            limpiaCajasDeArchivos();
+        }else if (idBuscar.contains("VER-")){
+            objManejoProductos.setTipoProducto("Verduras");
+            objManejoProductos.setIdProductoManejoArchivos(idBuscar);
+            int encontroRegistro = objManejoProductos.borrarPorID();
+            
+            if (encontroRegistro==1){
+                JOptionPane.showMessageDialog(null,"El registro fue eliminado correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID en el sistema, vuelva a intentarlo");
+            }
+            
+            limpiaCajasDeArchivos();
+        }else if (idBuscar.contains("OTR-")){
+            objManejoProductos.setTipoProducto("Otros");
+            objManejoProductos.setIdProductoManejoArchivos(idBuscar);
+            int encontroRegistro = objManejoProductos.borrarPorID();
+            
+            if (encontroRegistro==1){
+                JOptionPane.showMessageDialog(null,"El registro fue eliminado correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID en el sistema, vuelva a intentarlo");
+            }
+            
+            limpiaCajasDeArchivos();
+        }else{
+            JOptionPane.showMessageDialog(null,"Ingrese una ID válido");
+            limpiaCajasDeArchivos();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+    
+    private void limpiaCajasDeArchivos(){
+        txtIDBorrar.setText("");
+    }
     /**
      * @param args the command line arguments
      */

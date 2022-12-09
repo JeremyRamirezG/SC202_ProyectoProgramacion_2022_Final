@@ -4,6 +4,10 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import CRUD.ManejoProductos;
+
 /**
  *
  * @author jrg71
@@ -15,6 +19,9 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
      */
     public frm_Admin_ListarProductos() {
         initComponents();
+        poblarTablaFrutas();
+        poblarTablaVerduras();
+        poblarTablaOtros();
     }
 
     /**
@@ -28,11 +35,11 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFrutas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblVerduras = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblOtros = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         lblListaProductos = new javax.swing.JLabel();
 
@@ -40,47 +47,38 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblFrutas.setForeground(new java.awt.Color(0, 0, 0));
+        tblFrutas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
-        jTable2.setForeground(new java.awt.Color(255, 255, 255));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Fruta", "Precio", "Fecha Ingreso", "ID", "Cantidad", "Temporada"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane1.setViewportView(tblFrutas);
 
-        jTable3.setForeground(new java.awt.Color(255, 255, 255));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblVerduras.setForeground(new java.awt.Color(0, 0, 0));
+        tblVerduras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Verdura", "Precio", "Fecha Ingreso", "ID", "Cantidad", "Temporada"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane2.setViewportView(tblVerduras);
+
+        tblOtros.setForeground(new java.awt.Color(0, 0, 0));
+        tblOtros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Producto", "Precio", "Fecha Ingreso", "ID", "Cantidad", "Tipo", "Marca", "Distribuidora"
+            }
+        ));
+        jScrollPane3.setViewportView(tblOtros);
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,18 +101,17 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
+                        .addGap(198, 198, 198)
+                        .addComponent(lblListaProductos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(246, 246, 246)
                         .addComponent(btnSalir)))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblListaProductos)
-                .addGap(161, 161, 161))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,9 +124,9 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir)
-                .addContainerGap())
+                .addGap(7, 7, 7))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,6 +148,86 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void poblarTablaFrutas(){
+        ManejoProductos objManejoProductos = new ManejoProductos();
+        objManejoProductos.setTipoProducto("Frutas");
+        
+        ArrayList <Frutas> listaFrutas = new ArrayList<Frutas>();
+        listaFrutas= objManejoProductos.obtenerListaFrutas();
+        
+        //Enlazar la tabla que hicimos con la de la interfaz
+        DefaultTableModel modelo = (DefaultTableModel) tblFrutas.getModel();
+        
+        Object vector[] = new Object[6];
+        
+        if (listaFrutas!=null){
+            for (int i = 0; i <listaFrutas.size(); i++){
+                vector[0]= listaFrutas.get(i).getNombreProducto();
+                vector[1]= listaFrutas.get(i).getPrecioProducto();
+                vector[2]= listaFrutas.get(i).getFechaIngreso();
+                vector[3]= listaFrutas.get(i).getIdProducto();
+                vector[4]= listaFrutas.get(i).getCantidadProducto();
+                vector[5]= listaFrutas.get(i).getTemporadaFrutas();
+                
+                modelo.addRow(vector);
+            }
+        }
+        
+    }
+    private void poblarTablaVerduras(){
+        ManejoProductos objManejoProductos = new ManejoProductos();
+        objManejoProductos.setTipoProducto("Verduras");
+        
+        ArrayList <Verduras> listaVerduras = new ArrayList<Verduras>();
+        listaVerduras= objManejoProductos.obtenerListaVerduras();
+        
+        //Enlazar la tabla que hicimos con la de la interfaz
+        DefaultTableModel modelo = (DefaultTableModel) tblVerduras.getModel();
+        
+        Object vector[] = new Object[6];
+        
+        if (listaVerduras!=null){
+            for (int i = 0; i <listaVerduras.size(); i++){
+                vector[0]= listaVerduras.get(i).getNombreProducto();
+                vector[1]= listaVerduras.get(i).getPrecioProducto();
+                vector[2]= listaVerduras.get(i).getFechaIngreso();
+                vector[3]= listaVerduras.get(i).getIdProducto();
+                vector[4]= listaVerduras.get(i).getCantidadProducto();
+                vector[5]= listaVerduras.get(i).getTemporadaVerduras();
+                
+                modelo.addRow(vector);
+            }
+        }
+        
+    }
+    private void poblarTablaOtros(){
+        ManejoProductos objManejoProductos = new ManejoProductos();
+        objManejoProductos.setTipoProducto("Otros");
+        
+        ArrayList <Otros> listaOtros = new ArrayList<Otros>();
+        listaOtros= objManejoProductos.obtenerListaOtros();
+        
+        //Enlazar la tabla que hicimos con la de la interfaz
+        DefaultTableModel modelo = (DefaultTableModel) tblOtros.getModel();
+        
+        Object vector[] = new Object[8];
+        
+        if (listaOtros!=null){
+            for (int i = 0; i <listaOtros.size(); i++){
+                vector[0]= listaOtros.get(i).getNombreProducto();
+                vector[1]= listaOtros.get(i).getPrecioProducto();
+                vector[2]= listaOtros.get(i).getFechaIngreso();
+                vector[3]= listaOtros.get(i).getIdProducto();
+                vector[4]= listaOtros.get(i).getCantidadProducto();
+                vector[5]= listaOtros.get(i).getTipoProducto();
+                vector[6]= listaOtros.get(i).getMarcaProducto();
+                vector[7]= listaOtros.get(i).getDistribuidorProducto();
+                
+                modelo.addRow(vector);
+            }
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -192,9 +269,9 @@ public class frm_Admin_ListarProductos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lblListaProductos;
+    private javax.swing.JTable tblFrutas;
+    private javax.swing.JTable tblOtros;
+    private javax.swing.JTable tblVerduras;
     // End of variables declaration//GEN-END:variables
 }

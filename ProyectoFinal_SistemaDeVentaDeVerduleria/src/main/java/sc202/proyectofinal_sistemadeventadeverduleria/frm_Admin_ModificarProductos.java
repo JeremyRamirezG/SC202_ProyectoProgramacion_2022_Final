@@ -4,6 +4,9 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import javax.swing.JOptionPane;
+import CRUD.ManejoProductos;
+
 /**
  *
  * @author jrg71
@@ -73,6 +76,11 @@ public class frm_Admin_ModificarProductos extends javax.swing.JFrame {
         btnActualizar.setBackground(new java.awt.Color(57, 62, 70));
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,6 +186,85 @@ public class frm_Admin_ModificarProductos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        String idBuscar = txtIDProducto.getText();
+        String nuevaCantidad = txtCantidad.getText();
+        String nuevoNombre = txtNombre.getText();
+        String nuevoPrecio = txtPrecio.getText();
+        String nuevaFecha = txtFecha.getText();
+        
+        if((isNumeric(nuevaCantidad)) && (isNumeric(nuevoPrecio))){
+            if(idBuscar.contains("VER-")){
+                ManejoProductos objManejoProductos = new ManejoProductos();
+                objManejoProductos.setTipoProducto("Verduras");
+                objManejoProductos.setIdProductoManejoArchivos(idBuscar);
+                
+                objManejoProductos.setNuevoNombre(nuevoNombre);
+                objManejoProductos.setNuevaCantidad(Integer.parseInt(nuevaCantidad));
+                objManejoProductos.setNuevoPrecio(Double.parseDouble(nuevoPrecio));
+                objManejoProductos.setNuevaFecha(nuevaFecha);
+
+                objManejoProductos.actualizarInformacionVerdurasYFrutas();
+                limpiarCajas();
+            }else if(idBuscar.contains("FRU-")){
+                ManejoProductos objManejoProductos = new ManejoProductos();
+                objManejoProductos.setTipoProducto("Frutas");
+                objManejoProductos.setIdProductoManejoArchivos(idBuscar);
+                
+                objManejoProductos.setNuevoNombre(nuevoNombre);
+                objManejoProductos.setNuevaCantidad(Integer.parseInt(nuevaCantidad));
+                objManejoProductos.setNuevoPrecio(Double.parseDouble(nuevoPrecio));
+                objManejoProductos.setNuevaFecha(nuevaFecha);
+
+                objManejoProductos.actualizarInformacionVerdurasYFrutas();
+                limpiarCajas();
+            }else if(idBuscar.contains("OTR-")){
+                ManejoProductos objManejoProductos = new ManejoProductos();
+                objManejoProductos.setTipoProducto("Otros");
+                objManejoProductos.setIdProductoManejoArchivos(idBuscar);
+                
+                objManejoProductos.setNuevoNombre(nuevoNombre);
+                objManejoProductos.setNuevaCantidad(Integer.parseInt(nuevaCantidad));
+                objManejoProductos.setNuevoPrecio(Double.parseDouble(nuevoPrecio));
+                objManejoProductos.setNuevaFecha(nuevaFecha);
+
+                objManejoProductos.actualizarInformacionOtros();
+                limpiarCajas();
+            }else{
+                JOptionPane.showMessageDialog(null,"Ingrese un ID de producto válido");
+                limpiaCajaDeID();
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Ingrese los datos númericos o dígitos según corresponda");
+            limpiaCajaDeNumeros();
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
+    private void limpiaCajaDeID(){
+        txtIDProducto.setText("");
+    }
+    private void limpiaCajaDeNumeros(){
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+    }
+    private void limpiarCajas(){
+        txtIDProducto.setText("");
+        txtCantidad.setText("");
+        txtFecha.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
