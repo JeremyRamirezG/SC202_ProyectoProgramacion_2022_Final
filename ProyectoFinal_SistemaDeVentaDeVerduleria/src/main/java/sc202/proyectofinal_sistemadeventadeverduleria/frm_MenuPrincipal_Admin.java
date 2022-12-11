@@ -29,7 +29,7 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         imgLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuCRUD = new javax.swing.JMenu();
         btnProductos = new javax.swing.JMenu();
         btnAgregarProducto = new javax.swing.JMenuItem();
         btnMostrarProductos = new javax.swing.JMenuItem();
@@ -40,9 +40,12 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
         btnListarPersonas = new javax.swing.JMenuItem();
         btnModificarPersona = new javax.swing.JMenuItem();
         btnBorrarPersona = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuSesion = new javax.swing.JMenu();
         btnCerrarSesion = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenuItem();
+        mnuAyuda = new javax.swing.JMenu();
+        mnuAyudaProductos = new javax.swing.JMenuItem();
+        mnuAyudaUsuarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +70,7 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
                 .addContainerGap(109, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Opciones Administrador");
+        mnuCRUD.setText("Opciones Administrador");
 
         btnProductos.setText("Productos");
 
@@ -103,7 +106,7 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
         });
         btnProductos.add(btnBorrarProducto);
 
-        jMenu1.add(btnProductos);
+        mnuCRUD.add(btnProductos);
 
         btnUsuarios.setText("Usuarios");
 
@@ -139,11 +142,11 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
         });
         btnUsuarios.add(btnBorrarPersona);
 
-        jMenu1.add(btnUsuarios);
+        mnuCRUD.add(btnUsuarios);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuCRUD);
 
-        jMenu2.setText("Opciones Sesión");
+        mnuSesion.setText("Opciones Sesión");
 
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +154,7 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jMenu2.add(btnCerrarSesion);
+        mnuSesion.add(btnCerrarSesion);
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -159,9 +162,29 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jMenu2.add(btnSalir);
+        mnuSesion.add(btnSalir);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuSesion);
+
+        mnuAyuda.setText("Ayuda");
+
+        mnuAyudaProductos.setText("CRUD Productos");
+        mnuAyudaProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAyudaProductosActionPerformed(evt);
+            }
+        });
+        mnuAyuda.add(mnuAyudaProductos);
+
+        mnuAyudaUsuarios.setText("CRUD Usuarios");
+        mnuAyudaUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAyudaUsuariosActionPerformed(evt);
+            }
+        });
+        mnuAyuda.add(mnuAyudaUsuarios);
+
+        jMenuBar1.add(mnuAyuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -252,6 +275,20 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
         formulario.setVisible(true);
     }//GEN-LAST:event_btnBorrarPersonaActionPerformed
 
+    private void mnuAyudaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAyudaProductosActionPerformed
+        // TODO add your handling code here:
+        frm_Admin_AyudaProductos formulario = new frm_Admin_AyudaProductos();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_mnuAyudaProductosActionPerformed
+
+    private void mnuAyudaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAyudaUsuariosActionPerformed
+        // TODO add your handling code here:
+        frm_Admin_AyudaUsuarios formulario = new frm_Admin_AyudaUsuarios();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_mnuAyudaUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,9 +338,12 @@ public class frm_MenuPrincipal_Admin extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JMenu btnUsuarios;
     private javax.swing.JLabel imgLogo;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu mnuAyuda;
+    private javax.swing.JMenuItem mnuAyudaProductos;
+    private javax.swing.JMenuItem mnuAyudaUsuarios;
+    private javax.swing.JMenu mnuCRUD;
+    private javax.swing.JMenu mnuSesion;
     // End of variables declaration//GEN-END:variables
 }
