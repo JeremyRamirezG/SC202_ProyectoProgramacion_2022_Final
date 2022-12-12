@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import sc202.proyectofinal_sistemadeventadeverduleria.Administrador;
-import sc202.proyectofinal_sistemadeventadeverduleria.Vendedor;
-import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
-
 /**
  *
  * @author jrg71
