@@ -4,6 +4,13 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import javax.swing.JOptionPane;
+import CRUD.ManejoPersonas;
+import java.util.HashSet;
+import sc202.proyectofinal_sistemadeventadeverduleria.Administrador;
+import sc202.proyectofinal_sistemadeventadeverduleria.Vendedor;
+import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
+
 /**
  *
  * @author jrg71
@@ -15,6 +22,7 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
      */
     public frm_Admin_AgregarUsuarios() {
         initComponents();
+        this.getRootPane().setDefaultButton(btnAgregar);
     }
 
     /**
@@ -34,27 +42,29 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
         lblCedula = new javax.swing.JLabel();
         lblNumero = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
-        txtFecha = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
-        txtCantidad = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         lblIDUsuario = new javax.swing.JLabel();
         lblSalario = new javax.swing.JLabel();
         lblAnnos = new javax.swing.JLabel();
-        lblDistribuidor = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        txtTemporada = new javax.swing.JTextField();
-        txtTipoProducto = new javax.swing.JTextField();
-        txtMarca = new javax.swing.JTextField();
-        txtDistribuidor = new javax.swing.JTextField();
+        txtIdUsuario = new javax.swing.JTextField();
+        txtSalario = new javax.swing.JTextField();
+        txtContratado = new javax.swing.JTextField();
+        txtEstado = new javax.swing.JTextField();
         lblAviso = new javax.swing.JLabel();
         lblRolEmpleado = new javax.swing.JLabel();
         txtRolEmpleado = new javax.swing.JTextField();
         lblDireccionCliente = new javax.swing.JLabel();
         lblMetodo = new javax.swing.JLabel();
-        txtDireccionCleinte = new javax.swing.JTextField();
         txtDireccionCliente = new javax.swing.JTextField();
+        txtMetodoPago = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,21 +95,26 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
         txtNombre.setCaretColor(new java.awt.Color(57, 62, 70));
         txtNombre.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
-        txtPrecio.setBackground(new java.awt.Color(57, 62, 70));
-        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtEdad.setBackground(new java.awt.Color(57, 62, 70));
+        txtEdad.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtFecha.setBackground(new java.awt.Color(57, 62, 70));
-        txtFecha.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setBackground(new java.awt.Color(57, 62, 70));
+        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtID.setBackground(new java.awt.Color(57, 62, 70));
-        txtID.setForeground(new java.awt.Color(255, 255, 255));
+        txtCedula.setBackground(new java.awt.Color(57, 62, 70));
+        txtCedula.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtCantidad.setBackground(new java.awt.Color(57, 62, 70));
-        txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setBackground(new java.awt.Color(57, 62, 70));
+        txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
 
         btnAgregar.setBackground(new java.awt.Color(57, 62, 70));
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         lblIDUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblIDUsuario.setText("ID Usuario");
@@ -110,8 +125,8 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
         lblAnnos.setForeground(new java.awt.Color(255, 255, 255));
         lblAnnos.setText("Años contratado");
 
-        lblDistribuidor.setForeground(new java.awt.Color(255, 255, 255));
-        lblDistribuidor.setText("Estado");
+        lblEstado.setForeground(new java.awt.Color(255, 255, 255));
+        lblEstado.setText("En contrato (T/F)");
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,17 +137,17 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
             }
         });
 
-        txtTemporada.setBackground(new java.awt.Color(57, 62, 70));
-        txtTemporada.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdUsuario.setBackground(new java.awt.Color(57, 62, 70));
+        txtIdUsuario.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtTipoProducto.setBackground(new java.awt.Color(57, 62, 70));
-        txtTipoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        txtSalario.setBackground(new java.awt.Color(57, 62, 70));
+        txtSalario.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtMarca.setBackground(new java.awt.Color(57, 62, 70));
-        txtMarca.setForeground(new java.awt.Color(255, 255, 255));
+        txtContratado.setBackground(new java.awt.Color(57, 62, 70));
+        txtContratado.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtDistribuidor.setBackground(new java.awt.Color(57, 62, 70));
-        txtDistribuidor.setForeground(new java.awt.Color(255, 255, 255));
+        txtEstado.setBackground(new java.awt.Color(57, 62, 70));
+        txtEstado.setForeground(new java.awt.Color(255, 255, 255));
 
         lblAviso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAviso.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,11 +166,17 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
         lblMetodo.setForeground(new java.awt.Color(255, 255, 255));
         lblMetodo.setText("Método de Pago");
 
-        txtDireccionCleinte.setBackground(new java.awt.Color(57, 62, 70));
-        txtDireccionCleinte.setForeground(new java.awt.Color(255, 255, 255));
-
         txtDireccionCliente.setBackground(new java.awt.Color(57, 62, 70));
         txtDireccionCliente.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtMetodoPago.setBackground(new java.awt.Color(57, 62, 70));
+        txtMetodoPago.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblPassword.setText("Contraseña");
+
+        txtPassword.setBackground(new java.awt.Color(57, 62, 70));
+        txtPassword.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,40 +187,44 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblPassword))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(txtCantidad)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                .addComponent(txtTelefono)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(lblSalario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblIDUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblAnnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDistribuidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblRolEmpleado)
                             .addComponent(lblDireccionCliente)
                             .addComponent(lblMetodo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTemporada, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTipoProducto, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtSalario, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtContratado, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(txtDistribuidor)
+                            .addComponent(txtEstado)
                             .addComponent(txtRolEmpleado)
-                            .addComponent(txtDireccionCleinte, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDireccionCliente, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(txtDireccionCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtMetodoPago, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(21, 21, 21))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -216,39 +241,41 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIDUsuario)
-                    .addComponent(txtTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEdad)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSalario)
-                    .addComponent(txtTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAnnos)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContratado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDistribuidor)
-                    .addComponent(txtDistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEstado)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumero)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRolEmpleado)
                     .addComponent(txtRolEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDireccionCliente)
-                    .addComponent(txtDireccionCleinte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMetodo)
-                    .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
@@ -276,6 +303,142 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+        String idUnico = txtIdUsuario.getText();
+        String nombre = txtNombre.getText();
+        String edad = txtEdad.getText();
+        String correo = txtCorreo.getText();
+        String cedula = txtCedula.getText();
+        String telefono = txtTelefono.getText();
+        String password = String.valueOf(txtPassword.getPassword());
+
+        String salarioEmpleados = txtSalario.getText();
+        String añosEmpleados = txtContratado.getText();
+        String estadoEmpleados = txtEstado.getText();
+        String rolEmpleados = txtRolEmpleado.getText();
+
+        String direccionClientes = txtDireccionCliente.getText();
+        String metodoPagoClientes = txtMetodoPago.getText();
+        
+        Administrador objAdministrador = new Administrador();
+        Vendedor objVendedor = new Vendedor();
+        Cliente objCliente = new Cliente();
+        ManejoPersonas objManejoPersonas = new ManejoPersonas();
+
+        if ((idUnico.length() >= 1) && (nombre.length() >= 1) && (edad.length() >= 1) && (correo.length() >= 1) && (cedula.length() >= 1) && (telefono.length() >= 1) && (password.length() >= 1)) {
+            if (idUnico.contains("ADM-")) {
+                if ((salarioEmpleados.length() >= 1) && (añosEmpleados.length() >= 1) && (estadoEmpleados.length() >= 1) && (rolEmpleados.length() >= 1)) {
+                    if (isNumeric(añosEmpleados) && isNumeric(salarioEmpleados) && isNumeric(edad) && isBoolean(estadoEmpleados)) {
+                        objManejoPersonas.setContraseñaSesion(password);
+                        objAdministrador.setIdEmpleado(idUnico);
+                        objAdministrador.setNombrePersona(nombre);
+                        objAdministrador.setEdadPersona(Integer.parseInt(edad));
+                        objAdministrador.setCorreoElectronicoPersona(correo);
+                        objAdministrador.setCedulaPersona(cedula);
+                        objAdministrador.setNumeroTelefonicoPersona(telefono);
+                        
+                        objAdministrador.setSalarioBrutoEmpleado(Double.parseDouble(salarioEmpleados));
+                        objAdministrador.setAñosContratadoEmpleado(Integer.parseInt(añosEmpleados));
+                        objAdministrador.setEstadoEmpleado(estadoEmpleados);
+                        objAdministrador.setRolAdministrador(rolEmpleados);
+                        
+                        objManejoPersonas.agregarAdministrador(objAdministrador);
+                        limpiaCajasDeArchivos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese los datos del tipo requerido"); 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese todos los datos requeridos");
+                }
+            } else if (idUnico.contains("VEN-")) {
+                if ((salarioEmpleados.length() >= 1) && (añosEmpleados.length() >= 1) && (estadoEmpleados.length() >= 1) && (rolEmpleados.length() >= 1)) {
+                    if (isNumeric(añosEmpleados) && isNumeric(salarioEmpleados) && isNumeric(edad) && isBoolean(estadoEmpleados)) {
+                        objManejoPersonas.setContraseñaSesion(password);
+                        objVendedor.setIdEmpleado(idUnico);
+                        objVendedor.setNombrePersona(nombre);
+                        objVendedor.setEdadPersona(Integer.parseInt(edad));
+                        objVendedor.setCorreoElectronicoPersona(correo);
+                        objVendedor.setCedulaPersona(cedula);
+                        objVendedor.setNumeroTelefonicoPersona(telefono);
+                        
+                        objVendedor.setSalarioBrutoEmpleado(Double.parseDouble(salarioEmpleados));
+                        objVendedor.setAñosContratadoEmpleado(Integer.parseInt(añosEmpleados));
+                        objVendedor.setEstadoEmpleado(estadoEmpleados);
+                        objVendedor.setRolVendedor(rolEmpleados);
+                        
+                        objManejoPersonas.agregarVendedor(objVendedor);
+                        limpiaCajasDeArchivos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese los datos del tipo requerido"); 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese todos los datos requeridos");
+                }
+            } else if (idUnico.contains("CLI-")) {
+                if ((direccionClientes.length() >= 1) && (metodoPagoClientes.length() >= 1)) {
+                    if (isNumeric(edad)) {
+                        objManejoPersonas.setContraseñaSesion(password);
+                        objCliente.setIdCliente(idUnico);
+                        objCliente.setNombrePersona(nombre);
+                        objCliente.setEdadPersona(Integer.parseInt(edad));
+                        objCliente.setCorreoElectronicoPersona(correo);
+                        objCliente.setCedulaPersona(cedula);
+                        objCliente.setNumeroTelefonicoPersona(telefono);
+                        
+                        objCliente.setDireccionCliente(direccionClientes);
+                        objCliente.setMetodoPagoCliente(metodoPagoClientes);
+                        
+                        objManejoPersonas.agregarCliente(objCliente);
+                        limpiaCajasDeArchivos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese los datos del tipo requerido"); 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese todos los datos requeridos");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese correctamente el ID del usuario");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos requeridos");
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    private static boolean isBoolean(String cadena) {
+        try {
+            Boolean.parseBoolean(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    private void limpiaCajasDeArchivos() {
+        txtNombre.setText("");
+        txtEdad.setText("");
+        txtCorreo.setText("");
+        txtCedula.setText("");
+        txtTelefono.setText("");
+        txtIdUsuario.setText("");
+        txtSalario.setText("");
+        txtContratado.setText("");
+        txtEstado.setText("");
+        txtDireccionCliente.setText("");
+        txtMetodoPago.setText("");
+        txtRolEmpleado.setText("");
+        txtPassword.setText("");
+    }
 
     /**
      * @param args the command line arguments
@@ -323,25 +486,27 @@ public class frm_Admin_AgregarUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDireccionCliente;
-    private javax.swing.JLabel lblDistribuidor;
     private javax.swing.JLabel lblEdad;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblIDUsuario;
     private javax.swing.JLabel lblMetodo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNumero;
+    private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRolEmpleado;
     private javax.swing.JLabel lblSalario;
-    private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtDireccionCleinte;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtContratado;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccionCliente;
-    private javax.swing.JTextField txtDistribuidor;
-    private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtEstado;
+    private javax.swing.JTextField txtIdUsuario;
+    private javax.swing.JTextField txtMetodoPago;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtRolEmpleado;
-    private javax.swing.JTextField txtTemporada;
-    private javax.swing.JTextField txtTipoProducto;
+    private javax.swing.JTextField txtSalario;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,7 @@ public class Vendedor extends Empleado {
     private String rolVendedor;
     
     //Constructores
-    public Vendedor(String rolVendedor, String idEmpleado, int añosContratadoEmpleado, Double salarioBrutoEmpleado, boolean estadoEmpleado, String nombrePersona, String cedulaPersona, int edadPersona, String correoElectronicoPersona, String numeroTelefonicoPersona) {
+    public Vendedor(String rolVendedor, String idEmpleado, int añosContratadoEmpleado, Double salarioBrutoEmpleado, String estadoEmpleado, String nombrePersona, String cedulaPersona, int edadPersona, String correoElectronicoPersona, String numeroTelefonicoPersona) {
         super(idEmpleado, añosContratadoEmpleado, salarioBrutoEmpleado, estadoEmpleado, nombrePersona, cedulaPersona, edadPersona, correoElectronicoPersona, numeroTelefonicoPersona);
         this.rolVendedor = rolVendedor;
     }

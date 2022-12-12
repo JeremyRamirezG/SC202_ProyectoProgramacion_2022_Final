@@ -5,10 +5,10 @@ public abstract class Empleado extends Persona{
     protected String idEmpleado;
     protected int añosContratadoEmpleado;
     protected Double salarioBrutoEmpleado;
-    protected boolean estadoEmpleado;
+    protected String estadoEmpleado;
     
     //Constructores
-    public Empleado(String idEmpleado, int añosContratadoEmpleado, Double salarioBrutoEmpleado, boolean estadoEmpleado, String nombrePersona, String cedulaPersona, int edadPersona, String correoElectronicoPersona, String numeroTelefonicoPersona) {
+    public Empleado(String idEmpleado, int añosContratadoEmpleado, Double salarioBrutoEmpleado, String estadoEmpleado, String nombrePersona, String cedulaPersona, int edadPersona, String correoElectronicoPersona, String numeroTelefonicoPersona) {
         super(nombrePersona, cedulaPersona, edadPersona, correoElectronicoPersona, numeroTelefonicoPersona);
         this.idEmpleado = idEmpleado;
         this.añosContratadoEmpleado = añosContratadoEmpleado;
@@ -20,7 +20,7 @@ public abstract class Empleado extends Persona{
         this.idEmpleado = "";
         this.añosContratadoEmpleado = 0;
         this.salarioBrutoEmpleado = 0.0;
-        this.estadoEmpleado = true;
+        this.estadoEmpleado = "";
     }
     
     //GETs y SETs
@@ -47,13 +47,14 @@ public abstract class Empleado extends Persona{
     public void setSalarioBrutoEmpleado(Double salarioBrutoEmpleado) {
         this.salarioBrutoEmpleado = salarioBrutoEmpleado;
     }
-
-    public boolean isEstadoEmpleado() {
+    public String getEstadoEmpleado() {
         return estadoEmpleado;
     }
 
-    public void setEstadoEmpleado(boolean estadoEmpleado) {
+    public void setEstadoEmpleado(String estadoEmpleado) {
         this.estadoEmpleado = estadoEmpleado;
     }
+
+
     
 }
