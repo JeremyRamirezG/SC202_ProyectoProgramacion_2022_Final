@@ -1,6 +1,6 @@
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
-public abstract class Empleado extends Persona{
+public class Empleado extends Persona{
     //Atributos propios de la clase
     protected String idEmpleado;
     protected int añosContratadoEmpleado;

@@ -6,12 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 import sc202.proyectofinal_sistemadeventadeverduleria.Administrador;
 import sc202.proyectofinal_sistemadeventadeverduleria.Vendedor;
+import sc202.proyectofinal_sistemadeventadeverduleria.Empleado;
 import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
 import conexionSQL.ConexionSQL;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -140,7 +143,6 @@ public class ManejoPersonas {
     }
     
     
-    
     //CRUD
     Administrador objAdministrador = new Administrador();
     Vendedor objVendedor = new Vendedor();
@@ -155,6 +157,7 @@ public class ManejoPersonas {
         
         try{
             PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareCall(SQL_INSERT_USUARIO);
+            
             sentencia.setString(1, objAdministrador.getIdEmpleado());
             sentencia.setString(2, objAdministrador.getNombrePersona());
             sentencia.setInt(3, objAdministrador.getEdadPersona());
@@ -184,6 +187,7 @@ public class ManejoPersonas {
         
         try{
             PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareCall(SQL_INSERT_USUARIO);
+            
             sentencia.setString(1, objVendedor.getIdEmpleado());
             sentencia.setString(2, objVendedor.getNombrePersona());
             sentencia.setInt(3, objVendedor.getEdadPersona());
@@ -213,6 +217,7 @@ public class ManejoPersonas {
         
         try{
             PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareCall(SQL_INSERT_USUARIO);
+            
             sentencia.setString(1, objCliente.getIdCliente());
             sentencia.setString(2, objCliente.getNombrePersona());
             sentencia.setInt(3, objCliente.getEdadPersona());
@@ -234,6 +239,69 @@ public class ManejoPersonas {
     }
     
     //Read
+    public ArrayList listarEmpleados(){
+        this.seleccionTablas = "empleados";
+        String SQL_LIST_USUARIO = "select * from "+this.seleccionTablas;
+        ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
+        
+        try{
+            Statement sentencia = ConexionSQL.getConexioSQL().createStatement();
+            ResultSet resultado = sentencia.executeQuery(SQL_LIST_USUARIO);
+            
+            while(resultado.next()){
+                Empleado objEmpleado = new Empleado();
+                
+                objEmpleado.setNombrePersona(resultado.getString("nombreEmpleados"));
+                objEmpleado.setIdEmpleado(resultado.getString("idUnicoEmpleados"));
+                objEmpleado.setEdadPersona(Integer.parseInt(resultado.getString("edadEmpleados")));
+                objEmpleado.setCorreoElectronicoPersona(resultado.getString("correoEmpleados"));
+                objEmpleado.setCedulaPersona(resultado.getString("cedulaEmpleados"));
+                objEmpleado.setNumeroTelefonicoPersona(resultado.getString("numeroEmpleados"));
+                objEmpleado.setSalarioBrutoEmpleado(Double.parseDouble(resultado.getString("salarioEmpleados")));
+                objEmpleado.setAñosContratadoEmpleado(Integer.parseInt(resultado.getString("contratadoEmpleados")));
+                objEmpleado.setEstadoEmpleado(resultado.getString("estadoEmpleados"));
+                
+                listaEmpleados.add(objEmpleado);
+            }
+            
+            return listaEmpleados;
+        }catch(Exception ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
+    public ArrayList listarClientes(){
+        this.seleccionTablas = "clientes";
+        String SQL_LIST_USUARIO = "select * from "+this.seleccionTablas;
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        
+        try{
+            Statement sentencia = ConexionSQL.getConexioSQL().createStatement();
+            ResultSet resultado = sentencia.executeQuery(SQL_LIST_USUARIO);
+            
+            while(resultado.next()){
+                Cliente objCliente = new Cliente();
+                
+                objCliente.setNombrePersona(resultado.getString("nombreClientes"));
+                objCliente.setIdCliente(resultado.getString("idUnicoClientes"));
+                objCliente.setEdadPersona(Integer.parseInt(resultado.getString("edadClientes")));
+                objCliente.setCorreoElectronicoPersona(resultado.getString("correoClientes"));
+                objCliente.setCedulaPersona(resultado.getString("cedulaClientes"));
+                objCliente.setNumeroTelefonicoPersona(resultado.getString("numeroClientes"));
+                objCliente.setDireccionCliente(resultado.getString("direccionClientes"));
+                objCliente.setMetodoPagoCliente(resultado.getString("metodoPagoClientes"));
+                
+                listaClientes.add(objCliente);
+            }
+            
+            return listaClientes;
+        }catch(Exception ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
     
     //Update
     

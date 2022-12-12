@@ -4,6 +4,12 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import CRUD.ManejoPersonas;
+import sc202.proyectofinal_sistemadeventadeverduleria.Empleado;
+import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
+
 /**
  *
  * @author jrg71
@@ -15,6 +21,8 @@ public class frm_Admin_ListarUsuarios extends javax.swing.JFrame {
      */
     public frm_Admin_ListarUsuarios() {
         initComponents();
+        poblarTablaEmpleados();
+        poblarTablaClientes();
     }
 
     /**
@@ -28,27 +36,25 @@ public class frm_Admin_ListarUsuarios extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblClientes = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         lblListaProductos = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblEmpleados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cliente", "ID", "Edad", "Correo", "Cédula", "Número", "Dirección", "Método de Pago"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblClientes);
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,34 +69,48 @@ public class frm_Admin_ListarUsuarios extends javax.swing.JFrame {
         lblListaProductos.setForeground(new java.awt.Color(255, 255, 255));
         lblListaProductos.setText("Listas de usuarios");
 
+        tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Empleado", "ID", "Edad", "Correo", "Cédula", "Número", "Salario", "Años Contratado", "Sigue en la empresa?"
+            }
+        ));
+        jScrollPane2.setViewportView(tblEmpleados);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblListaProductos)
-                .addGap(161, 161, 161))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(btnSalir)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(231, 231, 231)
+                        .addComponent(lblListaProductos)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(269, 269, 269)
+                .addComponent(btnSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(lblListaProductos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSalir)
-                .addGap(27, 27, 27))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,7 +121,9 @@ public class frm_Admin_ListarUsuarios extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,6 +134,61 @@ public class frm_Admin_ListarUsuarios extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void poblarTablaEmpleados(){
+        ManejoPersonas objManejoPersonas = new ManejoPersonas();
+        
+        ArrayList <Empleado> listaEmpleados = new ArrayList<Empleado>();
+        listaEmpleados= objManejoPersonas.listarEmpleados();
+        
+        //Enlazar la tabla que hicimos con la de la interfaz
+        DefaultTableModel modelo = (DefaultTableModel) tblEmpleados.getModel();
+        
+        Object vector[] = new Object[9];
+        
+        if (listaEmpleados!=null){
+            for (int i = 0; i <listaEmpleados.size(); i++){
+                vector[0]= listaEmpleados.get(i).getNombrePersona();
+                vector[1]= listaEmpleados.get(i).getIdEmpleado();
+                vector[2]= listaEmpleados.get(i).getEdadPersona();
+                vector[3]= listaEmpleados.get(i).getCorreoElectronicoPersona();
+                vector[4]= listaEmpleados.get(i).getCedulaPersona();
+                vector[5]= listaEmpleados.get(i).getNumeroTelefonicoPersona();
+                vector[6]= listaEmpleados.get(i).getSalarioBrutoEmpleado();
+                vector[7]= listaEmpleados.get(i).getAñosContratadoEmpleado();
+                vector[8]= listaEmpleados.get(i).getEstadoEmpleado();
+                
+                modelo.addRow(vector);
+            }
+        }
+        
+    }
+    private void poblarTablaClientes(){
+        ManejoPersonas objManejoPersonas = new ManejoPersonas();
+        
+        ArrayList <Cliente> listaClientes = new ArrayList<Cliente>();
+        listaClientes= objManejoPersonas.listarClientes();
+        
+        //Enlazar la tabla que hicimos con la de la interfaz
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        
+        Object vector[] = new Object[8];
+        
+        if (listaClientes!=null){
+            for (int i = 0; i <listaClientes.size(); i++){
+                vector[0]= listaClientes.get(i).getNombrePersona();
+                vector[1]= listaClientes.get(i).getIdCliente();
+                vector[2]= listaClientes.get(i).getEdadPersona();
+                vector[3]= listaClientes.get(i).getCorreoElectronicoPersona();
+                vector[4]= listaClientes.get(i).getCedulaPersona();
+                vector[5]= listaClientes.get(i).getNumeroTelefonicoPersona();
+                vector[6]= listaClientes.get(i).getDireccionCliente();
+                vector[7]= listaClientes.get(i).getMetodoPagoCliente();
+                
+                modelo.addRow(vector);
+            }
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -152,7 +229,9 @@ public class frm_Admin_ListarUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblListaProductos;
+    private javax.swing.JTable tblClientes;
+    private javax.swing.JTable tblEmpleados;
     // End of variables declaration//GEN-END:variables
 }
