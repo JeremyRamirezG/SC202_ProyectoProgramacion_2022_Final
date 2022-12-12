@@ -28,10 +28,10 @@ public class ManejoPersonas {
     private String nuevoNombre;
     private String nuevoCorreo;
     private int nuevaEdad;
-    private String nuevaCedula;
+    private String nuevaContraseña;
     
     //Constructores de la clase
-    public ManejoPersonas(String SQL_INSERT_USUARIO, String seleccionTablas, String idPersonaManejoArchivos, String columnas, String columnasSimbolo, String contraseñaSesion, String nuevoNombre, String nuevoCorreo, int nuevaEdad, String nuevaCedula) {
+    public ManejoPersonas(String SQL_INSERT_USUARIO, String seleccionTablas, String idPersonaManejoArchivos, String columnas, String columnasSimbolo, String contraseñaSesion, String nuevoNombre, String nuevoCorreo, int nuevaEdad, String nuevaContraseña) {
         this.SQL_INSERT_USUARIO = SQL_INSERT_USUARIO;
         this.seleccionTablas = seleccionTablas;
         this.idPersonaManejoArchivos = idPersonaManejoArchivos;
@@ -41,7 +41,7 @@ public class ManejoPersonas {
         this.nuevoNombre = nuevoNombre;
         this.nuevoCorreo = nuevoCorreo;
         this.nuevaEdad = nuevaEdad;
-        this.nuevaCedula = nuevaCedula;
+        this.nuevaContraseña = nuevaContraseña;
     }
     public ManejoPersonas() {
         this.SQL_INSERT_USUARIO = "insert into "+this.seleccionTablas+" "+this.columnas+" values "+this.columnasSimbolo;;
@@ -53,7 +53,7 @@ public class ManejoPersonas {
         this.nuevoNombre = "";
         this.nuevoCorreo = "";
         this.nuevaEdad = 0;
-        this.nuevaCedula = "";
+        this.nuevaContraseña = "";
     }
     
     
@@ -108,11 +108,11 @@ public class ManejoPersonas {
     }
 
     public String getNuevaCedula() {
-        return nuevaCedula;
+        return nuevaContraseña;
     }
 
     public void setNuevaCedula(String nuevaCedula) {
-        this.nuevaCedula = nuevaCedula;
+        this.nuevaContraseña = nuevaCedula;
     }
 
     public String getColumnas() {
