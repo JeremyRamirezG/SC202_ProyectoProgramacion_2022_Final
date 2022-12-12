@@ -4,6 +4,10 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import javax.swing.JOptionPane;
+import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
+import CRUD.ManejoPersonas;
+
 /**
  *
  * @author jrg71
@@ -77,6 +81,11 @@ public class frm_Login_Usuarios extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(57, 62, 70));
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         imgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/user.png"))); // NOI18N
 
@@ -172,26 +181,32 @@ public class frm_Login_Usuarios extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
         String usuario = txtUsuario.getText();
-        String Contraseña = String.valueOf(txtContraseña.getPassword());
-        
-        if (usuario.equals("Admin")){
+        String contraseña = String.valueOf(txtContraseña.getPassword());
+
+        if (usuario.equals("Admin")) {
             frm_MenuPrincipal_Admin formulario = new frm_MenuPrincipal_Admin();
             formulario.setLocationRelativeTo(null);
             formulario.setVisible(true);
             this.dispose();
-        } else if (usuario.equals("Jeremy")){
+        } else if (usuario.equals("Jeremy")) {
             frm_MenuPrincipal_Vendedores formulario = new frm_MenuPrincipal_Vendedores();
             formulario.setLocationRelativeTo(null);
             formulario.setVisible(true);
             this.dispose();
-        }
-        else {
+        } else {
             frm_MenuPrincipal_Clientes formulario = new frm_MenuPrincipal_Clientes();
             formulario.setLocationRelativeTo(null);
             formulario.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        frm_Clientes_RegistrarUsuario formulario = new frm_Clientes_RegistrarUsuario();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
