@@ -4,6 +4,11 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import javax.swing.JOptionPane;
+import sc202.proyectofinal_sistemadeventadeverduleria.Empleado;
+import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
+import CRUD.ManejoPersonas;
+
 /**
  *
  * @author jrg71
@@ -29,7 +34,7 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblModificarUsuario = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
-        txtIDProducto = new javax.swing.JTextField();
+        txtIDPersona = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblEdad = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
@@ -40,6 +45,7 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
         txtEdad = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
+        cboPersona = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,8 +58,8 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
         lblCedula.setForeground(new java.awt.Color(255, 255, 255));
         lblCedula.setText("Cédula");
 
-        txtIDProducto.setBackground(new java.awt.Color(57, 62, 70));
-        txtIDProducto.setForeground(new java.awt.Color(255, 255, 255));
+        txtIDPersona.setBackground(new java.awt.Color(57, 62, 70));
+        txtIDPersona.setForeground(new java.awt.Color(255, 255, 255));
 
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nuevo Nombre");
@@ -73,6 +79,11 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
         btnActualizar.setBackground(new java.awt.Color(57, 62, 70));
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,6 +103,15 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
         txtPassword.setBackground(new java.awt.Color(57, 62, 70));
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
 
+        cboPersona.setBackground(new java.awt.Color(57, 62, 70));
+        cboPersona.setForeground(new java.awt.Color(255, 255, 255));
+        cboPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Cliente" }));
+        cboPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboPersonaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,32 +124,34 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblCedula)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtIDProducto))
+                                .addComponent(txtIDPersona))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNombre)
-                                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnActualizar)
-                                        .addGap(6, 6, 6)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                                     .addComponent(txtCorreo)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
-                        .addComponent(lblModificarUsuario)))
+                        .addComponent(lblModificarUsuario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(cboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,7 +162,7 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
@@ -153,11 +175,13 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
                     .addComponent(lblPassword)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addComponent(cboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnSalir))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,6 +203,67 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtNombre.getText();
+        String edad = txtEdad.getText();
+        String correo = txtCorreo.getText();
+        String contraseña = String.valueOf(txtPassword.getPassword());
+        String cedula = txtIDPersona.getText();
+        String tipoPersona = cboPersona.getSelectedItem().toString();
+        
+        Empleado objEmpleado = new Empleado();
+        Cliente objCliente = new Cliente();
+        ManejoPersonas objManejoPersonas = new ManejoPersonas();
+        
+        if (nombre.length() >= 1 && edad.length() >=1 && correo.length() >= 1 && contraseña.length() >= 1){
+            if (isNumeric(edad)){
+                if (tipoPersona.equals("Empleado")){
+                    objEmpleado.setNombrePersona(nombre);
+                    objEmpleado.setEdadPersona(Integer.parseInt(edad));
+                    objEmpleado.setCorreoElectronicoPersona(correo);
+                    objManejoPersonas.setContraseñaSesion(contraseña);
+                    objManejoPersonas.setIdPersonaManejoArchivos(cedula);
+                    
+                    objManejoPersonas.actualizarEmpleado(objEmpleado);
+                    limpiaCajasDeArchivos();
+                }else if (tipoPersona.equals("Cliente")){
+                    objCliente.setNombrePersona(nombre);
+                    objCliente.setEdadPersona(Integer.parseInt(edad));
+                    objCliente.setCorreoElectronicoPersona(correo);
+                    objManejoPersonas.setContraseñaSesion(contraseña);
+                    objManejoPersonas.setIdPersonaManejoArchivos(cedula);
+                    
+                    objManejoPersonas.actualizarCliente(objCliente);
+                    limpiaCajasDeArchivos();
+                }
+            }else {
+                JOptionPane.showMessageDialog(null, "Ingrese los datos del tipo requerido"); 
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos para actualizar");
+        }
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void cboPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboPersonaActionPerformed
+
+    private void limpiaCajasDeArchivos() {
+        txtNombre.setText("");
+        txtEdad.setText("");
+        txtCorreo.setText("");
+        txtPassword.setText("");
+    }
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -218,6 +303,7 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cboPersona;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCorreo;
@@ -227,7 +313,7 @@ public class frm_Admin_ModificarUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtIDProducto;
+    private javax.swing.JTextField txtIDPersona;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,8 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import CRUD.ManejoPersonas;
+
 /**
  *
  * @author jrg71
@@ -32,6 +34,7 @@ public class frm_Admin_BorrarUsuarios extends javax.swing.JFrame {
         txtIDBorrar = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        cboPersona = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +54,11 @@ public class frm_Admin_BorrarUsuarios extends javax.swing.JFrame {
         btnEliminar.setBackground(new java.awt.Color(57, 62, 70));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(57, 62, 70));
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,27 +69,37 @@ public class frm_Admin_BorrarUsuarios extends javax.swing.JFrame {
             }
         });
 
+        cboPersona.setBackground(new java.awt.Color(57, 62, 70));
+        cboPersona.setForeground(new java.awt.Color(255, 255, 255));
+        cboPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Cliente" }));
+        cboPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboPersonaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblIDUsuario)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtIDBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(btnSalir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(lblIDUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(txtIDBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar)
                 .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(lblBorrarUsuario)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(lblBorrarUsuario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,14 +107,16 @@ public class frm_Admin_BorrarUsuarios extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBorrarUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIDUsuario)
                     .addComponent(txtIDBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir)
-                .addContainerGap())
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,6 +138,37 @@ public class frm_Admin_BorrarUsuarios extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void cboPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboPersonaActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        String tipoPersona = cboPersona.getSelectedItem().toString();;
+        String cedula = txtIDBorrar.getText();
+        
+        ManejoPersonas objManejoPersonas = new ManejoPersonas();
+        
+        if (tipoPersona.equals("Empleado")){
+            objManejoPersonas.setIdPersonaManejoArchivos(cedula);
+            objManejoPersonas.setSeleccionTablas("empleados");
+            objManejoPersonas.setNombreTabla("Empleados");
+            
+            objManejoPersonas.borrarUsuario();
+            limpiaCajasDeArchivos();
+        }else if (tipoPersona.equals("Cliente")){
+            objManejoPersonas.setIdPersonaManejoArchivos(cedula);
+            objManejoPersonas.setSeleccionTablas("clientes");
+            objManejoPersonas.setNombreTabla("Clientes");
+            
+            objManejoPersonas.borrarUsuario();
+            limpiaCajasDeArchivos();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void limpiaCajasDeArchivos() {
+        txtIDBorrar.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -157,6 +208,7 @@ public class frm_Admin_BorrarUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cboPersona;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBorrarUsuario;
     private javax.swing.JLabel lblIDUsuario;

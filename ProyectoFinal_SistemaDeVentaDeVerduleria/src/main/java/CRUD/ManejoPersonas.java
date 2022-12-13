@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.Connection;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -28,35 +27,27 @@ public class ManejoPersonas {
     private String columnas;
     private String columnasSimbolo;
     private String contraseñaSesion;
-    private String nuevoNombre;
-    private String nuevoCorreo;
-    private int nuevaEdad;
-    private String nuevaContraseña;
+    private String nombreTabla;
     
     //Constructores de la clase
-    public ManejoPersonas(String SQL_INSERT_USUARIO, String seleccionTablas, String idPersonaManejoArchivos, String columnas, String columnasSimbolo, String contraseñaSesion, String nuevoNombre, String nuevoCorreo, int nuevaEdad, String nuevaContraseña) {
+    
+    public ManejoPersonas(String SQL_INSERT_USUARIO, String seleccionTablas, String idPersonaManejoArchivos, String columnas, String columnasSimbolo, String contraseñaSesion, String nombreTabla) {
         this.SQL_INSERT_USUARIO = SQL_INSERT_USUARIO;
         this.seleccionTablas = seleccionTablas;
         this.idPersonaManejoArchivos = idPersonaManejoArchivos;
         this.columnas = columnas;
         this.columnasSimbolo = columnasSimbolo;
         this.contraseñaSesion = contraseñaSesion;
-        this.nuevoNombre = nuevoNombre;
-        this.nuevoCorreo = nuevoCorreo;
-        this.nuevaEdad = nuevaEdad;
-        this.nuevaContraseña = nuevaContraseña;
+        this.nombreTabla = nombreTabla;
     }
     public ManejoPersonas() {
-        this.SQL_INSERT_USUARIO = "insert into "+this.seleccionTablas+" "+this.columnas+" values "+this.columnasSimbolo;;
+        this.SQL_INSERT_USUARIO = "";
         this.seleccionTablas = "";
         this.idPersonaManejoArchivos = "";
         this.columnas = "";
         this.columnasSimbolo = "";
         this.contraseñaSesion = "";
-        this.nuevoNombre = "";
-        this.nuevoCorreo = "";
-        this.nuevaEdad = 0;
-        this.nuevaContraseña = "";
+        this.nombreTabla = "";
     }
     
     
@@ -86,38 +77,6 @@ public class ManejoPersonas {
         this.idPersonaManejoArchivos = idPersonaManejoArchivos;
     }
 
-    public String getNuevoNombre() {
-        return nuevoNombre;
-    }
-
-    public void setNuevoNombre(String nuevoNombre) {
-        this.nuevoNombre = nuevoNombre;
-    }
-
-    public String getNuevoCorreo() {
-        return nuevoCorreo;
-    }
-
-    public void setNuevoCorreo(String nuevoCorreo) {
-        this.nuevoCorreo = nuevoCorreo;
-    }
-
-    public int getNuevaEdad() {
-        return nuevaEdad;
-    }
-
-    public void setNuevaEdad(int nuevaEdad) {
-        this.nuevaEdad = nuevaEdad;
-    }
-
-    public String getNuevaCedula() {
-        return nuevaContraseña;
-    }
-
-    public void setNuevaCedula(String nuevaCedula) {
-        this.nuevaContraseña = nuevaCedula;
-    }
-
     public String getColumnas() {
         return columnas;
     }
@@ -141,6 +100,15 @@ public class ManejoPersonas {
     public void setContraseñaSesion(String contraseñaSesion) {
         this.contraseñaSesion = contraseñaSesion;
     }
+    
+    public String getNombreTabla() {
+        return nombreTabla;
+    }
+
+    public void setNombreTabla(String nombreTabla) {
+        this.nombreTabla = nombreTabla;
+    }
+    
     
     
     //CRUD
@@ -304,6 +272,69 @@ public class ManejoPersonas {
     }
     
     //Update
+    public void actualizarEmpleado (Empleado objEmpleado){
+        this.columnas = "nombreEmpleados=?,edadEmpleados=?,correoEmpleados=?,contraseñaEmpleados=?";
+        this.seleccionTablas = "empleados";
+        String SQL_UPDATE_USUARIO = "update "+this.seleccionTablas+" set "+this.columnas+" where cedulaEmpleados=?";
+        
+        try{
+            PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareCall(SQL_UPDATE_USUARIO);
+            
+            sentencia.setString(1, objEmpleado.getNombrePersona());
+            sentencia.setInt(2, objEmpleado.getEdadPersona());
+            sentencia.setString(3, objEmpleado.getCorreoElectronicoPersona());
+            sentencia.setString(4, this.contraseñaSesion);
+            sentencia.setString(5, this.idPersonaManejoArchivos);
+            
+            if (sentencia.executeUpdate()>0){
+                JOptionPane.showMessageDialog(null, "Usuario actualizado!"); 
+            }else {
+                JOptionPane.showMessageDialog(null, "No se puedo agregar el usuario, intente de nuevo."); 
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void actualizarCliente (Cliente objCliente){
+        this.columnas = "nombreClientes=?,edadClientes=?,correoClientes=?,contraseñaClientes=?";
+        this.seleccionTablas = "clientes";
+        String SQL_UPDATE_USUARIO = "update "+this.seleccionTablas+" set "+this.columnas+" where cedulaClientes=?";
+        
+        try{
+            PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareCall(SQL_UPDATE_USUARIO);
+            
+            sentencia.setString(1, objCliente.getNombrePersona());
+            sentencia.setInt(2, objCliente.getEdadPersona());
+            sentencia.setString(3, objCliente.getCorreoElectronicoPersona());
+            sentencia.setString(4, this.contraseñaSesion);
+            sentencia.setString(5, this.idPersonaManejoArchivos);
+            
+            if (sentencia.executeUpdate()>0){
+                JOptionPane.showMessageDialog(null, "Usuario actualizado!"); 
+            }else {
+                JOptionPane.showMessageDialog(null, "No se puedo agregar el usuario, intente de nuevo."); 
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     //Delete
+    public void borrarUsuario() {
+        String SQL_DELETE_USUARIO = "delete from "+this.seleccionTablas+" where cedula"+this.nombreTabla+"="+this.idPersonaManejoArchivos;
+        
+        try{
+            Statement sentencia = ConexionSQL.getConexioSQL().createStatement();
+            int resultado = sentencia.executeUpdate(SQL_DELETE_USUARIO);
+            
+            if (resultado>0){
+                JOptionPane.showMessageDialog(null, "Usuario eliminado!"); 
+            }else {
+                JOptionPane.showMessageDialog(null, "No se puedo eliminar el usuario, intente de nuevo"); 
+            }
+        }catch(Exception ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

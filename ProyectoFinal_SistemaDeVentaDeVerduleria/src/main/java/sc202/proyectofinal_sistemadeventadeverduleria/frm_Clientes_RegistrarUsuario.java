@@ -251,7 +251,7 @@ public class frm_Clientes_RegistrarUsuario extends javax.swing.JFrame {
         if ((nombre.length() >= 1) && (edad.length() >= 1) && (cedula.length() >= 1) && (telefono.length() >= 1) && (direccionClientes.length() >= 1) && (metodoPagoClientes.length() >= 1) && (usuario.contains("@")) && (contraseña.length() >= 5)) {
             if (isNumeric(edad)) {
                 objManejoPersonas.setContraseñaSesion(contraseña);
-                objCliente.setIdCliente("CLI-");
+                objCliente.setIdCliente("CLI-AR");
                 objCliente.setCorreoElectronicoPersona(usuario);
                 objCliente.setNombrePersona(nombre);
                 objCliente.setEdadPersona(Integer.parseInt(edad));
