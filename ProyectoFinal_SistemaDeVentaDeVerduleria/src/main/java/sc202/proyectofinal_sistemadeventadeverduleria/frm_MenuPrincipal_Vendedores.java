@@ -30,7 +30,6 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
         imgLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        btnModificarVendedor = new javax.swing.JMenuItem();
         btnRegistrarCompra = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btnCerrarSesion = new javax.swing.JMenuItem();
@@ -60,9 +59,6 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Opciones Vendedor");
-
-        btnModificarVendedor.setText("Modificar Usuario");
-        jMenu1.add(btnModificarVendedor);
 
         btnRegistrarCompra.setText("Registrar Compra");
         jMenu1.add(btnRegistrarCompra);
@@ -160,7 +156,6 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCerrarSesion;
-    private javax.swing.JMenuItem btnModificarVendedor;
     private javax.swing.JMenuItem btnRegistrarCompra;
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JLabel imgLogo;
