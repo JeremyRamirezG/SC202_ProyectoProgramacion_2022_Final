@@ -112,9 +112,6 @@ public class ManejoPersonas {
     
     
     //CRUD
-    Administrador objAdministrador = new Administrador();
-    Vendedor objVendedor = new Vendedor();
-    Cliente objCliente = new Cliente();
     
     //Create
     public void agregarAdministrador (Administrador objAdministrador){
@@ -337,4 +334,53 @@ public class ManejoPersonas {
         }
     }
     
+    //LOGIN DE USUARIOS
+    //Login
+    public int loginEmpleado(Empleado objEmpleado) {
+        int validacion=0;
+        String correoEmpleado =  objEmpleado.getCorreoElectronicoPersona();
+        this.seleccionTablas = "empleados";
+        String SQL_LOGIN_USUARIO = "SELECT * FROM "+this.seleccionTablas+" WHERE correoEmpleados = ? and contraseñaEmpleados = ?";
+        
+        try{
+            PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareStatement(SQL_LOGIN_USUARIO);
+            sentencia.setString(1, correoEmpleado);
+            sentencia.setString(2, this.contraseñaSesion);
+            ResultSet resultado = sentencia.executeQuery();
+            
+            if (resultado.next()){
+                validacion = 1;
+            }
+            
+            return validacion;
+        }catch(Exception ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+        
+    }
+    
+    public int loginCliente(Cliente objCliente) {
+        int validacion=0;
+        String correoCliente =  objCliente.getCorreoElectronicoPersona();
+        this.seleccionTablas = "clientes";
+        String SQL_LOGIN_USUARIO = "SELECT * FROM "+this.seleccionTablas+" WHERE correoClientes = ? and contraseñaClientes = ?";
+        
+        try{
+            PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareStatement(SQL_LOGIN_USUARIO);
+            sentencia.setString(1, correoCliente);
+            sentencia.setString(2, this.contraseñaSesion);
+            ResultSet resultado = sentencia.executeQuery();
+            
+            if (resultado.next()){
+                validacion = 1;
+            }
+            
+            return validacion;
+        }catch(Exception ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+        
+    }
 }

@@ -6,6 +6,7 @@ package sc202.proyectofinal_sistemadeventadeverduleria;
 
 import javax.swing.JOptionPane;
 import sc202.proyectofinal_sistemadeventadeverduleria.Cliente;
+import sc202.proyectofinal_sistemadeventadeverduleria.Empleado;
 import CRUD.ManejoPersonas;
 
 /**
@@ -182,25 +183,58 @@ public class frm_Login_Usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = txtUsuario.getText();
         String contraseña = String.valueOf(txtContraseña.getPassword());
+        
+        Empleado objEmpleado = new Empleado();
+        Cliente objCliente = new Cliente();
+        ManejoPersonas objManejoPersonas = new ManejoPersonas();
 
-        if (usuario.equals("Admin")) {
-            frm_MenuPrincipal_Admin formulario = new frm_MenuPrincipal_Admin();
-            formulario.setLocationRelativeTo(null);
-            formulario.setVisible(true);
-            this.dispose();
-        } else if (usuario.equals("Jeremy")) {
-            frm_MenuPrincipal_Vendedores formulario = new frm_MenuPrincipal_Vendedores();
-            formulario.setLocationRelativeTo(null);
-            formulario.setVisible(true);
-            this.dispose();
+        if (!(usuario.isEmpty() || contraseña.isEmpty())) {
+            if ((usuario.contains("@LaFinca.com"))){
+                objEmpleado.setCorreoElectronicoPersona(usuario);
+                objManejoPersonas.setContraseñaSesion(contraseña);
+                int usuarioExistente = objManejoPersonas.loginEmpleado(objEmpleado);
+                
+                if ((usuarioExistente >= 1) && (usuario.equals("administrador@LaFinca.com"))){
+                    frm_MenuPrincipal_Admin formulario = new frm_MenuPrincipal_Admin();
+                    formulario.setLocationRelativeTo(null);
+                    formulario.setVisible(true);
+
+                    this.dispose();
+                } else if ((usuarioExistente >= 1) && !(usuario.equals("administrador@LaFinca.com"))){
+                    frm_MenuPrincipal_Vendedores formulario = new frm_MenuPrincipal_Vendedores();
+                    formulario.setLocationRelativeTo(null);
+                    formulario.setVisible(true);
+
+                    this.dispose();
+                } else {
+                  JOptionPane.showMessageDialog(null, "Ingreso no exitoso, asegurese de ingresar su correo y contraseña correctamente e intente de nuevo");
+                  limpiaCajasDeArchivos();
+                }
+            } else {
+                objCliente.setCorreoElectronicoPersona(usuario);
+                objManejoPersonas.setContraseñaSesion(contraseña);
+                int usuarioExistente = objManejoPersonas.loginCliente(objCliente);
+                
+                if (usuarioExistente >= 1){
+                    frm_MenuPrincipal_Clientes formulario = new frm_MenuPrincipal_Clientes();
+                    formulario.setLocationRelativeTo(null);
+                    formulario.setVisible(true);
+
+                    this.dispose();
+                } else {
+                  JOptionPane.showMessageDialog(null, "Ingreso no exitoso, asegurese de ingresar su correo y contraseña correctamente e intente de nuevo");
+                  limpiaCajasDeArchivos();
+                }
+            }
         } else {
-            frm_MenuPrincipal_Clientes formulario = new frm_MenuPrincipal_Clientes();
-            formulario.setLocationRelativeTo(null);
-            formulario.setVisible(true);
-            this.dispose();
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos para iniciar sesión");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void limpiaCajasDeArchivos() {
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+    }
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         frm_Clientes_RegistrarUsuario formulario = new frm_Clientes_RegistrarUsuario();
