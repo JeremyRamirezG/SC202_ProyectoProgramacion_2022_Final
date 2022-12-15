@@ -197,12 +197,14 @@ public class ManejoFacturas {
         Calendar hora;
         String textoReloj;
         String textoCalendario;
+        int mes;
 
         hora = Calendar.getInstance();
         textoReloj = "H" + hora.get(Calendar.HOUR_OF_DAY) + "M"
                 + hora.get(Calendar.MINUTE) + "S"
                 + hora.get(Calendar.SECOND);
-        textoCalendario = "" + hora.get(Calendar.DAY_OF_MONTH) + "_" + hora.get(Calendar.MONTH) + "_" + hora.get(Calendar.YEAR);
+        mes = hora.get(Calendar.MONTH)+1;
+        textoCalendario = "" + hora.get(Calendar.DAY_OF_MONTH) + "_" + mes + "_" + hora.get(Calendar.YEAR);
         this.facturaHoraFecha = textoReloj + "-" + textoCalendario;
     }
 

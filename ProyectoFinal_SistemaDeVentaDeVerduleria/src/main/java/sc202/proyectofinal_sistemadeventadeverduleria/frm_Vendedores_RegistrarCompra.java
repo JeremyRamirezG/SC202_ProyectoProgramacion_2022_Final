@@ -19,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame implements Runnable {
 
+    String hora, minutos,segundos,ampm;
+    int dia, mes, año;
+    Calendar calendario;
     Thread hilo1;
-    String hora, minutos, segundos;
-    String dia, mes, año;
     
     /**
      * Creates new form frm_Vendedores_RegistrarCompra
@@ -471,30 +472,49 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame implement
         
     }
     
-    @Override
-    public void run() {     
-        Calendar calendario = new GregorianCalendar();
+    public void run(){
         Thread ct = Thread.currentThread();
         while(ct == hilo1) {
-            hora = ""+calendario.get(Calendar.HOUR_OF_DAY);
-            minutos = ""+calendario.get(Calendar.MINUTE);
-            segundos = ""+calendario.get(Calendar.SECOND);
-            lblHora.setText(hora + ":" + minutos + ":" + segundos);
+            calcularHora();
+            lblHora.setText(hora + ":" + minutos + ":" + segundos + " "+ampm);
             
-            dia = ""+calendario.get(Calendar.DAY_OF_MONTH);
-            mes = ""+calendario.get(Calendar.MONTH);
-            año = ""+calendario.get(Calendar.YEAR);
+            calcularFecha();
             lblFecha.setText(dia+"/"+mes+"/"+año);
+            
             try {
                 Thread.sleep(1000);
            }catch(InterruptedException e) {}
         }
+    }
+    public void calcularHora(){
+        Calendar calendario = new GregorianCalendar();
+        Date fechaHoraActual = new Date();
         
+        calendario.setTime(fechaHoraActual);
+        ampm = calendario.get(Calendar.HOUR_OF_DAY)==Calendar.AM?"AM":"PM";
+        
+        if(ampm.equals("PM")){
+            int horaTemp = calendario.get(Calendar.HOUR_OF_DAY)-12;
+            hora = horaTemp>9?""+horaTemp:"0"+horaTemp;
+        }else{
+            hora = calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
+        }
+        minutos = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+    }
+    public void calcularFecha(){
+        Calendar calendario = new GregorianCalendar();
+        Date fechaHoraActual = new Date();
+        
+        mes = calendario.get(Calendar.MONTH)+1;
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        año = calendario.get(Calendar.YEAR);
     }
 
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

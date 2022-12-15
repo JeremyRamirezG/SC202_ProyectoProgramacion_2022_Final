@@ -1,2 +1,2 @@
-Fresa,300.0,12/14/2022,FRU-01,7,Verano
-Banano,300.0,12/08/2022,FRU-02,37,Invierno
+Fresa,300.0,12/14/2022,FRU-01,5,Verano
+Banano,300.0,12/08/2022,FRU-02,32,Invierno

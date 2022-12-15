@@ -1,2 +1,2 @@
-Palomitas,500.0,12/09/2022,OTR-01,5,Snacks,Tosty,Tosty Costa Rica
+Palomitas,500.0,12/09/2022,OTR-01,4,Snacks,Tosty,Tosty Costa Rica
 Tamales,800.0,12/14/2022,OTR-02,6,Platos,--,--
