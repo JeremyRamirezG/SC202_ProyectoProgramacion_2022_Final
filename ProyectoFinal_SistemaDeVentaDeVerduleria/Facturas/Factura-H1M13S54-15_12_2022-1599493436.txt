@@ -1,0 +1,9 @@
+Sistema de facturación La Finca, factura No.1599493436
+
+
+Gracias por su compra, encuentre el desgloce de la misma en el formato: Cantidad | Producto | SubTotal
+
+2 | Papa | 400.0₡
+2 | Banano | 600.0₡
+
+Total IVAI..................1130.0₡

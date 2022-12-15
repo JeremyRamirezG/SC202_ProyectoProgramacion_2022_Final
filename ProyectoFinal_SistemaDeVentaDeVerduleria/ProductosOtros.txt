@@ -1,2 +1,3 @@
 Palomitas,500.0,12/09/2022,OTR-01,4,Snacks,Tosty,Tosty Costa Rica
 Tamales,800.0,12/14/2022,OTR-02,5,Platos
+Cheetos,450.0,12/15/2022,OTR-03,40,Snacks,FritoLay,FritoLay LATAM
