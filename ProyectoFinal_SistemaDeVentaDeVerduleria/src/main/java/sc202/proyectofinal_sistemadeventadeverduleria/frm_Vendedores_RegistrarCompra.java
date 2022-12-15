@@ -7,6 +7,9 @@ package sc202.proyectofinal_sistemadeventadeverduleria;
 import CRUD.ManejoFacturas;
 import CRUD.ManejoProductos;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,13 +17,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jrg71
  */
-public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
+public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame implements Runnable {
 
+    Thread hilo1;
+    String hora, minutos, segundos;
+    String dia, mes, año;
+    
     /**
      * Creates new form frm_Vendedores_RegistrarCompra
      */
     public frm_Vendedores_RegistrarCompra() {
         initComponents();
+        hilo1 = new Thread(this);
+        hilo1.start();
         this.getRootPane().setDefaultButton(btnAgregar);
         poblarTablaFrutas();
         poblarTablaVerduras();
@@ -54,6 +63,8 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
         lblPrecioUnidad = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         lblMoneda = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
+        lblHora = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,6 +149,12 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
         lblMoneda.setForeground(new java.awt.Color(255, 255, 255));
         lblMoneda.setText("₡");
 
+        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha.setText("00/00/0000");
+
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora.setText("00:00:00");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,8 +198,12 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblPrecio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblMoneda)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
+                                .addComponent(lblMoneda))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblFecha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblHora)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -216,7 +237,11 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
                     .addComponent(lblPrecioUnidad)
                     .addComponent(lblPrecio)
                     .addComponent(lblMoneda))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFecha)
+                    .addComponent(lblHora))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnFinalizar)
@@ -445,6 +470,27 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
         }
         
     }
+    
+    @Override
+    public void run() {     
+        Calendar calendario = new GregorianCalendar();
+        Thread ct = Thread.currentThread();
+        while(ct == hilo1) {
+            hora = ""+calendario.get(Calendar.HOUR_OF_DAY);
+            minutos = ""+calendario.get(Calendar.MINUTE);
+            segundos = ""+calendario.get(Calendar.SECOND);
+            lblHora.setText(hora + ":" + minutos + ":" + segundos);
+            
+            dia = ""+calendario.get(Calendar.DAY_OF_MONTH);
+            mes = ""+calendario.get(Calendar.MONTH);
+            año = ""+calendario.get(Calendar.YEAR);
+            lblFecha.setText(dia+"/"+mes+"/"+año);
+            try {
+                Thread.sleep(1000);
+           }catch(InterruptedException e) {}
+        }
+        
+    }
 
     /**
      * @param args the command line arguments
@@ -490,6 +536,8 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblCantidadActual;
     private javax.swing.JLabel lblCantidadDisponible;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblIDProducto;
     private javax.swing.JLabel lblMoneda;
     private javax.swing.JLabel lblNombre;
@@ -501,4 +549,5 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame {
     private javax.swing.JTextField txtIDProducto;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
 }
