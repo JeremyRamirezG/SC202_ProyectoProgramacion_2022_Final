@@ -4,6 +4,9 @@
  */
 package sc202.proyectofinal_sistemadeventadeverduleria;
 
+import CRUD.ManejoFacturas;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jrg71
@@ -44,16 +47,31 @@ public class frm_MenuPrincipal_Clientes extends javax.swing.JFrame {
         btnVerduras.setForeground(new java.awt.Color(0, 0, 0));
         btnVerduras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/verduras.png"))); // NOI18N
         btnVerduras.setBorder(null);
+        btnVerduras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerdurasActionPerformed(evt);
+            }
+        });
 
         btnFrutas.setBackground(new java.awt.Color(0, 0, 0));
         btnFrutas.setForeground(new java.awt.Color(0, 0, 0));
         btnFrutas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/frutas.png"))); // NOI18N
         btnFrutas.setBorder(null);
+        btnFrutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFrutasActionPerformed(evt);
+            }
+        });
 
         btnOtros.setBackground(new java.awt.Color(0, 0, 0));
         btnOtros.setForeground(new java.awt.Color(0, 0, 0));
         btnOtros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/snacks.png"))); // NOI18N
         btnOtros.setBorder(null);
+        btnOtros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtrosActionPerformed(evt);
+            }
+        });
 
         lblMenuClientes.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblMenuClientes.setForeground(new java.awt.Color(26, 77, 46));
@@ -65,6 +83,11 @@ public class frm_MenuPrincipal_Clientes extends javax.swing.JFrame {
         btnCarrito.setBackground(new java.awt.Color(34, 40, 49));
         btnCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/carrito.png"))); // NOI18N
         btnCarrito.setBorder(null);
+        btnCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarritoActionPerformed(evt);
+            }
+        });
 
         btnUsuario.setBackground(new java.awt.Color(34, 40, 49));
         btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/usuario-50.png"))); // NOI18N
@@ -163,6 +186,34 @@ public class frm_MenuPrincipal_Clientes extends javax.swing.JFrame {
         formulario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerdurasActionPerformed
+        // TODO add your handling code here:
+        frm_Clientes_AgregarVerduras formulario = new frm_Clientes_AgregarVerduras();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnVerdurasActionPerformed
+
+    private void btnFrutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrutasActionPerformed
+        // TODO add your handling code here:
+        frm_Clientes_AgregarFrutas formulario = new frm_Clientes_AgregarFrutas();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnFrutasActionPerformed
+
+    private void btnOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtrosActionPerformed
+        // TODO add your handling code here:
+        frm_Clientes_AgregarOtros formulario = new frm_Clientes_AgregarOtros();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnOtrosActionPerformed
+
+    private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        // TODO add your handling code here:
+        ManejoFacturas objManejoFacturas = new ManejoFacturas();
+        objManejoFacturas.crearFactura();
+        JOptionPane.showMessageDialog(null,"Compra facturada, Factura No."+objManejoFacturas.getStringUnicoFactura());
+    }//GEN-LAST:event_btnCarritoActionPerformed
 
     /**
      * @param args the command line arguments

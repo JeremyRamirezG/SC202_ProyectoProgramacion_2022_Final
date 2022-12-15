@@ -153,7 +153,7 @@ public class ManejoFacturas {
             bw.newLine();
             bw.newLine();
             bw.newLine();
-            bw.write("Gracias por su compra, encuentre el desgloce de la misma en el formato: Producto | Cantidad | SubTotal");
+            bw.write("Gracias por su compra, encuentre el desgloce de la misma en el formato: Cantidad | Producto | SubTotal");
             bw.flush();
             bw.newLine();
             bw.newLine();

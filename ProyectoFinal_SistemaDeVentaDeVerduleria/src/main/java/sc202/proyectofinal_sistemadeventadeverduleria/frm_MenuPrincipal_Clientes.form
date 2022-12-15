@@ -99,6 +99,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerdurasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFrutas">
           <Properties>
@@ -115,6 +118,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFrutasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnOtros">
           <Properties>
@@ -131,6 +137,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOtrosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMenuClientes">
           <Properties>
@@ -192,6 +201,9 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCarritoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUsuario">
               <Properties>
