@@ -475,7 +475,7 @@ public class ManejoProductos {
                     distribuidora= st.nextToken();
                     
                     if (this.idProductoManejoArchivos.equals(idProducto)){
-                        bw.write(this.nuevoNombre+","+this.nuevoPrecio+","+this.nuevaFecha+","
+                        bw.write(nombreProducto+","+precioProducto+","+fechaProducto+","
                                 + idProducto+","+this.nuevaCantidad+","+tipoOtros+","+marca+","+distribuidora);
                     }else{
                         bw.write(segundoRegistro);

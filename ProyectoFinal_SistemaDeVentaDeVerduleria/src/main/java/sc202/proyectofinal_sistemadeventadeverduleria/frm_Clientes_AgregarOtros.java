@@ -192,20 +192,21 @@ public class frm_Clientes_AgregarOtros extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIDProducto)
-                    .addComponent(lblIDResultado)
-                    .addComponent(lblNombre)
-                    .addComponent(lblNombreResultado)
-                    .addComponent(lblPrecio)
-                    .addComponent(lblPrecioResultado)
-                    .addComponent(lblMoneda)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCantidad)
+                        .addComponent(txtCantidadResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCantidadDisponible)
-                        .addComponent(lblCantidadDisponibleResultado)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCantidad)
-                            .addComponent(txtCantidadResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblCantidadDisponibleResultado))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblIDProducto)
+                        .addComponent(lblIDResultado)
+                        .addComponent(lblNombre)
+                        .addComponent(lblNombreResultado)
+                        .addComponent(lblPrecio)
+                        .addComponent(lblPrecioResultado)
+                        .addComponent(lblMoneda)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
@@ -273,7 +274,7 @@ public class frm_Clientes_AgregarOtros extends javax.swing.JFrame {
                 objManejoProductos.setNuevoNombre(nombre);
                 objManejoProductos.setNuevaCantidad(nuevaCantidad);
 
-                objManejoProductos.actualizarCantidadVerdurasYFrutas();
+                objManejoProductos.actualizarCantidadOtros();
                 limpiarCajas();
             }else{
                 JOptionPane.showMessageDialog(null,"Ingrese un ID de producto y/o o cantidad válida");
