@@ -212,7 +212,7 @@ public class frm_MenuPrincipal_Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         ManejoFacturas objManejoFacturas = new ManejoFacturas();
         objManejoFacturas.crearFactura();
-        JOptionPane.showMessageDialog(null,"Compra facturada, Factura No."+objManejoFacturas.getStringUnicoFactura());
+        JOptionPane.showMessageDialog(null,"Muchas gracias por su compra!, Factura No."+objManejoFacturas.getStringUnicoFactura());
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     /**
