@@ -1,0 +1,10 @@
+Sistema de facturación La Finca, factura No.1662327653
+
+
+Gracias por su compra, encuentre el desgloce de la misma en el formato: Cantidad | Producto | SubTotal
+
+1 | Papa | 200.0₡
+1 | Fresa | 300.0₡
+1 | Palomitas | 500.0₡
+
+Total IVAI..................1130.0₡
