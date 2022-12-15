@@ -291,6 +291,8 @@ public class frm_Clientes_RegistrarUsuario extends javax.swing.JFrame {
         txtNumero.setText("");
         txtDireccion.setText("");
         txtMetodoPago.setText("");
+        txtCorreo.setText("");
+        txtPassword.setText("");
     }
     /**
      * @param args the command line arguments

@@ -31,6 +31,10 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnRegistrarCompra = new javax.swing.JMenuItem();
+        mnuProductos = new javax.swing.JMenu();
+        mnuAgregarProducto = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btnCerrarSesion = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenuItem();
@@ -61,7 +65,40 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
         jMenu1.setText("Opciones Vendedor");
 
         btnRegistrarCompra.setText("Registrar Compra");
+        btnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCompraActionPerformed(evt);
+            }
+        });
         jMenu1.add(btnRegistrarCompra);
+
+        mnuProductos.setText("Productos");
+
+        mnuAgregarProducto.setText("Agregar");
+        mnuAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAgregarProductoActionPerformed(evt);
+            }
+        });
+        mnuProductos.add(mnuAgregarProducto);
+
+        jMenuItem2.setText("Modificar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnuProductos.add(jMenuItem2);
+
+        jMenuItem1.setText("CRUD Productos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mnuProductos.add(jMenuItem1);
+
+        jMenu1.add(mnuProductos);
 
         jMenuBar1.add(jMenu1);
 
@@ -118,6 +155,34 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        frm_Admin_AyudaProductos formulario = new frm_Admin_AyudaProductos();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void mnuAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAgregarProductoActionPerformed
+        // TODO add your handling code here:
+        frm_Admin_AgregarProductos formulario = new frm_Admin_AgregarProductos();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_mnuAgregarProductoActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        frm_Admin_ModificarProductos formulario = new frm_Admin_ModificarProductos();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
+        // TODO add your handling code here:
+        frm_Vendedores_RegistrarCompra formulario = new frm_Vendedores_RegistrarCompra();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -162,6 +227,10 @@ public class frm_MenuPrincipal_Vendedores extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mnuAgregarProducto;
+    private javax.swing.JMenu mnuProductos;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ public class Facturas {
     private String fechaFactura;
     private String horaFactura;
     
-    //Constructores de la clase
+    //Constructores de la clase   
     public Facturas(String nombreFactura, Double precioTotal, String fechaFactura, String horaFactura) {
         this.nombreFactura = nombreFactura;
         this.precioTotal = precioTotal;
@@ -39,14 +39,6 @@ public class Facturas {
         this.nombreFactura = nombreFactura;
     }
 
-    public Double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(Double precioTotal) {
-        this.precioTotal = precioTotal;
-    }
-
     public String getFechaFactura() {
         return fechaFactura;
     }
@@ -62,7 +54,12 @@ public class Facturas {
     public void setHoraFactura(String horaFactura) {
         this.horaFactura = horaFactura;
     }
-    
-    //Metodos propios de la clase
-    
+
+    public Double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(Double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
 }

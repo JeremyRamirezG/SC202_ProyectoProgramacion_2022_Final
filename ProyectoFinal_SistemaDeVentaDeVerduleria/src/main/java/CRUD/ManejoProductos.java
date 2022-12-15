@@ -413,7 +413,7 @@ public class ManejoProductos {
                 
                 
             }else{
-                JOptionPane.showMessageDialog(null, "No fue encontrada la cédula de la persona suministrada, vuelva a intentarlo");
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID del producto suministrado, vuelva a intentarlo");
             }
             
         }catch (Exception ex){
@@ -491,7 +491,7 @@ public class ManejoProductos {
                 
                 
             }else{
-                JOptionPane.showMessageDialog(null, "No fue encontrada la cédula de la persona suministrada, vuelva a intentarlo");
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID del producto suministrado, vuelva a intentarlo");
             }
             
         }catch (Exception ex){
@@ -547,5 +547,155 @@ public class ManejoProductos {
             ex.printStackTrace();
             return 0;
         }
+    }
+    
+    //Actualizar productos carrito
+    public void actualizarCantidadVerdurasYFrutas(){
+        try{
+            String nombreProducto,precioProducto,fechaProducto, idProducto, cantidad, temporadaProducto, primerRegistro, segundoRegistro;
+            
+            //Variable bandera 
+            int encontroRegistro=0; 
+            
+            this.archivoProductos = "Productos"+this.tipoProducto+".txt";
+            File archivo = new File (this.rutaProductos+this.archivoProductos);
+            
+            String archivoProductosTemporal = "Productos"+this.tipoProducto+"Temporal.txt";
+            File archivoTemporal = new File (this.rutaProductos+archivoProductosTemporal);
+            
+            BufferedReader br = new BufferedReader (new FileReader (archivo));
+            BufferedWriter bw = new BufferedWriter (new FileWriter(archivoTemporal));
+            
+            String informacion = "";
+            
+            while ((primerRegistro= br.readLine())!=null){
+                
+                StringTokenizer st = new StringTokenizer (primerRegistro, ",");
+                nombreProducto=st.nextToken();
+                precioProducto= st.nextToken();
+                fechaProducto = st.nextToken();
+                idProducto = st.nextToken();
+                cantidad = st.nextToken();
+                temporadaProducto= st.nextToken();
+                
+                if (this.idProductoManejoArchivos.equals(idProducto)){
+                    informacion= nombreProducto; 
+                }
+                
+            }
+            br.close();
+            
+            if (informacion.length()!=0){
+
+                BufferedReader br2= new BufferedReader (new FileReader (archivo));
+                
+                while ((segundoRegistro= br2.readLine())!=null){
+                    StringTokenizer st = new StringTokenizer(segundoRegistro,",");
+                    nombreProducto=st.nextToken();
+                    precioProducto= st.nextToken();
+                    fechaProducto = st.nextToken();
+                    idProducto = st.nextToken();
+                    cantidad = st.nextToken();
+                    temporadaProducto= st.nextToken();
+                    
+                    if (this.idProductoManejoArchivos.equals(idProducto)){
+                        bw.write(nombreProducto+","+precioProducto+","+fechaProducto+","
+                                + idProducto+","+this.nuevaCantidad+","+temporadaProducto);
+                    }else{
+                        bw.write(segundoRegistro);
+                    }
+                    bw.flush();
+                    bw.newLine();
+                }
+                bw.close();;
+                br2.close();
+                archivo.delete();
+                archivoTemporal.renameTo(archivo);     
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID del producto suministrado, vuelva a intentarlo");
+            }
+            
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        
+        
+    }
+    public void actualizarCantidadOtros(){
+        try{
+            String nombreProducto,precioProducto,fechaProducto, idProducto, cantidad, tipoOtros, marca, distribuidora, primerRegistro, segundoRegistro;
+            
+            //Variable bandera 
+            int encontroRegistro=0; 
+            
+            this.archivoProductos = "Productos"+this.tipoProducto+".txt";
+            File archivo = new File (this.rutaProductos+this.archivoProductos);
+            
+            String archivoProductosTemporal = "Productos"+this.tipoProducto+"Temporal.txt";
+            File archivoTemporal = new File (this.rutaProductos+archivoProductosTemporal);
+            
+            BufferedReader br = new BufferedReader (new FileReader (archivo));
+            BufferedWriter bw = new BufferedWriter (new FileWriter(archivoTemporal));
+            
+            String informacion = "";
+            
+            while ((primerRegistro= br.readLine())!=null){
+                
+                StringTokenizer st = new StringTokenizer (primerRegistro, ",");
+                nombreProducto=st.nextToken();
+                precioProducto= st.nextToken();
+                fechaProducto = st.nextToken();
+                idProducto = st.nextToken();
+                cantidad = st.nextToken();
+                tipoOtros= st.nextToken();
+                marca= st.nextToken();
+                distribuidora= st.nextToken();
+                
+                if (this.idProductoManejoArchivos.equals(idProducto)){
+                    informacion= nombreProducto; 
+                }
+                
+            }
+            br.close();
+            
+            if (informacion.length()!=0){
+
+                BufferedReader br2= new BufferedReader (new FileReader (archivo));
+                
+                while ((segundoRegistro= br2.readLine())!=null){
+                    StringTokenizer st = new StringTokenizer(segundoRegistro,",");
+                    nombreProducto=st.nextToken();
+                    precioProducto= st.nextToken();
+                    fechaProducto = st.nextToken();
+                    idProducto = st.nextToken();
+                    cantidad = st.nextToken();
+                    tipoOtros= st.nextToken();
+                    marca= st.nextToken();
+                    distribuidora= st.nextToken();
+                    
+                    if (this.idProductoManejoArchivos.equals(idProducto)){
+                        bw.write(nombreProducto+","+precioProducto+","+fechaProducto+","
+                                + idProducto+","+this.nuevaCantidad+","+tipoOtros+","+marca+","+distribuidora);
+                    }else{
+                        bw.write(segundoRegistro);
+                    }
+                    bw.flush();
+                    bw.newLine();
+                }
+                bw.close();;
+                br2.close();
+                archivo.delete();
+                archivoTemporal.renameTo(archivo);
+                
+                
+            } else{
+                JOptionPane.showMessageDialog(null, "No fue encontrado el ID del producto suministrado, vuelva a intentarlo");
+            }         
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        
+        
     }
 }
