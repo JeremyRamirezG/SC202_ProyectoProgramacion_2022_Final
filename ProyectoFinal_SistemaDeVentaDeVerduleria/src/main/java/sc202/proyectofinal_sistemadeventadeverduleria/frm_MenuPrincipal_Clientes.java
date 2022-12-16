@@ -92,6 +92,11 @@ public class frm_MenuPrincipal_Clientes extends javax.swing.JFrame {
         btnUsuario.setBackground(new java.awt.Color(34, 40, 49));
         btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/usuario-50.png"))); // NOI18N
         btnUsuario.setBorder(null);
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuarioActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(34, 40, 49));
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contents/salir.png"))); // NOI18N
@@ -214,6 +219,13 @@ public class frm_MenuPrincipal_Clientes extends javax.swing.JFrame {
         objManejoFacturas.crearFactura();
         JOptionPane.showMessageDialog(null,"Muchas gracias por su compra!, Factura No."+objManejoFacturas.getStringUnicoFactura());
     }//GEN-LAST:event_btnCarritoActionPerformed
+
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
+        // TODO add your handling code here:
+        frm_Clientes_ListarUsuario formulario = new frm_Clientes_ListarUsuario();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

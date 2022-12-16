@@ -383,4 +383,33 @@ public class ManejoPersonas {
         }
         
     }
+    public ArrayList consultaCliente(Cliente objCliente) {
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        String correoCliente =  objCliente.getCorreoElectronicoPersona();
+        this.seleccionTablas = "clientes";
+        String SQL_LOGIN_USUARIO = "SELECT * FROM "+this.seleccionTablas+" WHERE correoClientes = ? and contraseñaClientes = ?";
+        
+        try{
+            PreparedStatement sentencia = ConexionSQL.getConexioSQL().prepareStatement(SQL_LOGIN_USUARIO);
+            sentencia.setString(1, correoCliente);
+            sentencia.setString(2, this.contraseñaSesion);
+            ResultSet resultado = sentencia.executeQuery();
+            
+            if (resultado.next()){
+                objCliente.setNombrePersona(resultado.getString("nombreClientes"));
+                objCliente.setCedulaPersona(resultado.getString("cedulaClientes"));
+                objCliente.setNumeroTelefonicoPersona(resultado.getString("numeroClientes"));
+                objCliente.setDireccionCliente(resultado.getString("direccionClientes"));
+                
+                listaClientes.add(objCliente);
+            }
+            
+            return listaClientes;
+        }catch(Exception ex){
+            Logger.getLogger(ManejoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Algo salio mal, revise sus credenciales e intente de nuevo!");
+            return null;
+        }
+        
+    }
 }
