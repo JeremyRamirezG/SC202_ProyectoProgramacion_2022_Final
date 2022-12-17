@@ -1,0 +1,9 @@
+Sistema de facturación La Finca, factura No.424778943
+
+
+Gracias por su compra, encuentre el desgloce de la misma en el formato: Cantidad | Producto | SubTotal
+
+2 | Zanahoria | 700.0₡
+1 | Palomitas | 500.0₡
+
+Total IVAI..................1356.0₡

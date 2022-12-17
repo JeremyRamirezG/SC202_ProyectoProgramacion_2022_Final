@@ -1,0 +1,8 @@
+Sistema de facturación La Finca, factura No.1765956951
+
+
+Gracias por su compra, encuentre el desgloce de la misma en el formato: Cantidad | Producto | SubTotal
+
+10 | Banano | 3000.0₡
+
+Total IVAI..................3390.0₡

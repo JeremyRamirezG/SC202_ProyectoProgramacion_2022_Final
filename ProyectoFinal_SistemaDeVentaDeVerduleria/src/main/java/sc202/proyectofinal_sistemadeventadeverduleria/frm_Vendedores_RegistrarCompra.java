@@ -476,7 +476,7 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame implement
         Thread ct = Thread.currentThread();
         while(ct == hilo1) {
             calcularHora();
-            lblHora.setText(hora + ":" + minutos + ":" + segundos + " "+ampm);
+            lblHora.setText(hora + ":" + minutos + ":" + segundos);
             
             calcularFecha();
             lblFecha.setText(dia+"/"+mes+"/"+año);
@@ -491,14 +491,7 @@ public class frm_Vendedores_RegistrarCompra extends javax.swing.JFrame implement
         Date fechaHoraActual = new Date();
         
         calendario.setTime(fechaHoraActual);
-        ampm = calendario.get(Calendar.HOUR_OF_DAY)==Calendar.AM?"AM":"PM";
-        
-        if(ampm.equals("PM")){
-            int horaTemp = calendario.get(Calendar.HOUR_OF_DAY)-12;
-            hora = horaTemp>9?""+horaTemp:"0"+horaTemp;
-        }else{
-            hora = calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
-        }
+        hora = ""+calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
     }

@@ -1,2 +1,2 @@
-Zanahoria,350.0,12/08/2022,VER-01,4,Invierno
+Zanahoria,350.0,12/08/2022,VER-01,2,Invierno
 Papa,200.0,12/08/2022,VER-02,3,Invierno
